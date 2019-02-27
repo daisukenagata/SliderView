@@ -12,9 +12,9 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+
+        let sliderView = SliderView(frame: CGRect(x: 0, y: 0, width: view.frame.width
+            , height: view.frame.height))
+        view.addSubview(sliderView)
     }
-
-
 }
-

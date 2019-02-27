@@ -12,6 +12,8 @@
 		BB5F44772226DB2500C77C54 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB5F44752226DB2500C77C54 /* Main.storyboard */; };
 		BB5F44792226DB2700C77C54 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BB5F44782226DB2700C77C54 /* Assets.xcassets */; };
 		BB5F447C2226DB2700C77C54 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB5F447A2226DB2700C77C54 /* LaunchScreen.storyboard */; };
+		BB5F44842226E95A00C77C54 /* SliderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB5F44832226E95A00C77C54 /* SliderView.xib */; };
+		BB5F44862226E9E300C77C54 /* SliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5F44852226E9E300C77C54 /* SliderView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +24,8 @@
 		BB5F44782226DB2700C77C54 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BB5F447B2226DB2700C77C54 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BB5F447D2226DB2700C77C54 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BB5F44832226E95A00C77C54 /* SliderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SliderView.xib; sourceTree = "<group>"; };
+		BB5F44852226E9E300C77C54 /* SliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +60,8 @@
 			children = (
 				BB5F44712226DB2500C77C54 /* AppDelegate.swift */,
 				BB5F44732226DB2500C77C54 /* ViewController.swift */,
+				BB5F44832226E95A00C77C54 /* SliderView.xib */,
+				BB5F44852226E9E300C77C54 /* SliderView.swift */,
 				BB5F44752226DB2500C77C54 /* Main.storyboard */,
 				BB5F44782226DB2700C77C54 /* Assets.xcassets */,
 				BB5F447A2226DB2700C77C54 /* LaunchScreen.storyboard */,
@@ -124,6 +130,7 @@
 			files = (
 				BB5F447C2226DB2700C77C54 /* LaunchScreen.storyboard in Resources */,
 				BB5F44792226DB2700C77C54 /* Assets.xcassets in Resources */,
+				BB5F44842226E95A00C77C54 /* SliderView.xib in Resources */,
 				BB5F44772226DB2500C77C54 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -136,6 +143,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BB5F44742226DB2500C77C54 /* ViewController.swift in Sources */,
+				BB5F44862226E9E300C77C54 /* SliderView.swift in Sources */,
 				BB5F44722226DB2500C77C54 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -282,8 +290,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = B3ZKJZUE9E;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = SampleSlider/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -291,6 +299,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com-dbank-com.SampleSlider";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -300,8 +309,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = B3ZKJZUE9E;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = SampleSlider/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -309,6 +318,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com-dbank-com.SampleSlider";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
