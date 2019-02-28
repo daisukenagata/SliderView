@@ -1,5 +1,5 @@
 //
-//  XibView.swift
+//  SliderView.swift
 //  SampleSlider
 //
 //  Created by 永田大祐 on 2019/02/28.
@@ -43,7 +43,7 @@ final class SliderView: UIView {
         let changeOrigin = currentValue * change.value
         labelSet.frame.origin.x = CGFloat(changeOrigin)
 
-        let deviceSise = floor(CGFloat(changeOrigin) + labelSet.frame.width)
-        labelSet.text = deviceSise.description
+        let deviceSize = floor(CGFloat(changeOrigin) + labelSet.frame.width)
+        labelSet.text = deviceSize.description
     }
 }
