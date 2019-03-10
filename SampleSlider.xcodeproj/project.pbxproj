@@ -14,6 +14,7 @@
 		BB5F447C2226DB2700C77C54 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB5F447A2226DB2700C77C54 /* LaunchScreen.storyboard */; };
 		BB5F44842226E95A00C77C54 /* SliderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB5F44832226E95A00C77C54 /* SliderView.xib */; };
 		BB5F44862226E9E300C77C54 /* SliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5F44852226E9E300C77C54 /* SliderView.swift */; };
+		BBABDFE6223552E200959558 /* AVPlayerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBABDFE5223552E200959558 /* AVPlayerModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		BB5F447D2226DB2700C77C54 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BB5F44832226E95A00C77C54 /* SliderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SliderView.xib; sourceTree = "<group>"; };
 		BB5F44852226E9E300C77C54 /* SliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderView.swift; sourceTree = "<group>"; };
+		BBABDFE5223552E200959558 /* AVPlayerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVPlayerModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +64,7 @@
 				BB5F44732226DB2500C77C54 /* ViewController.swift */,
 				BB5F44832226E95A00C77C54 /* SliderView.xib */,
 				BB5F44852226E9E300C77C54 /* SliderView.swift */,
+				BBABDFE5223552E200959558 /* AVPlayerModel.swift */,
 				BB5F44752226DB2500C77C54 /* Main.storyboard */,
 				BB5F44782226DB2700C77C54 /* Assets.xcassets */,
 				BB5F447A2226DB2700C77C54 /* LaunchScreen.storyboard */,
@@ -145,6 +148,7 @@
 				BB5F44742226DB2500C77C54 /* ViewController.swift in Sources */,
 				BB5F44862226E9E300C77C54 /* SliderView.swift in Sources */,
 				BB5F44722226DB2500C77C54 /* AppDelegate.swift in Sources */,
+				BBABDFE6223552E200959558 /* AVPlayerModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -290,8 +294,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = B3ZKJZUE9E;
 				INFOPLIST_FILE = SampleSlider/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -309,8 +314,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = B3ZKJZUE9E;
 				INFOPLIST_FILE = SampleSlider/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

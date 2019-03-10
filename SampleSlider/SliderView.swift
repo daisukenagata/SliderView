@@ -7,18 +7,24 @@
 //
 
 import UIKit
+import AVFoundation
 
 final class SliderView: UIView {
 
-    @IBOutlet weak var labelSet: UILabel!
+    @IBOutlet weak var thumnaiIImageView: UIImageView!
     @IBOutlet weak var slider: UISlider!
+    @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet weak var durationLabel: UILabel!
+    
     private var currentValue = Float()
 
+    var aVPlayerModel = AVPlayerModel()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
+
         loadNib()
         slider.addTarget(self, action: #selector(onChange(change:)), for: .valueChanged)
-       
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -31,19 +37,24 @@ final class SliderView: UIView {
         view.frame = UIScreen.main.bounds
         self.addSubview(view)
     }
-
+    
     // Duration and origin
     @objc func onChange(change: UISlider) {
+        
+        let nowTime = aVPlayerModel.videoTime()
+        timeLabel.text = nowTime.description
+
+        let currentTime = aVPlayerModel.videoCurrentTime()
+        aVPlayerModel.videoSeek(change: change.value)
+        durationLabel.text = currentTime.description
 
         slider.minimumValue = 0
-        slider.maximumValue = Float(UIScreen.main.bounds.width - labelSet.frame.width)
+        slider.maximumValue = Float(currentTime)
 
-        currentValue = Float(UIScreen.main.bounds.width - labelSet.frame.width) / Float(slider.maximumValue)
-
+        let currentValue = Float(UIScreen.main.bounds.width - thumnaiIImageView.frame.width) / Float(currentTime)
         let changeOrigin = currentValue * change.value
-        labelSet.frame.origin.x = CGFloat(changeOrigin)
 
-        let deviceSize = floor(CGFloat(changeOrigin) + labelSet.frame.width)
-        labelSet.text = deviceSize.description
+        thumnaiIImageView.frame.origin.x = CGFloat(changeOrigin)
+        thumnaiIImageView.image = aVPlayerModel.videoImageViews(nowTime: nowTime)
     }
 }
