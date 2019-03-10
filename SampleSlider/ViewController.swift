@@ -9,9 +9,11 @@
 import UIKit
 import Photos
 import MobileCoreServices
+let collectionItemSize: CGFloat = 88
 
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
   
+    var setVideoURLView = MaskVideoURLView()
     var pic = UIImagePickerController()
     var sliderView: SliderView?
 
@@ -38,6 +40,14 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         let url = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.mediaURL)] as? URL else { return }
 
         sliderView!.aVPlayerModel.video(url: url)
+        
+        let dataImages = setVideoURLView.dataArray.map { (images) -> UIImage in
+            let resizeImage: UIImage = UIImage(data: images)!.ResizeUIImage(width: collectionItemSize, height:collectionItemSize)
+            print(resizeImage)
+            return  resizeImage
+       
+        }
+        print(dataImages)
         dismiss(animated: true)
     }
 
