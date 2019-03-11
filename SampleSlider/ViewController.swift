@@ -16,6 +16,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     var setVideoURLView = MaskVideoURLView()
     var pic = UIImagePickerController()
     var sliderView: SliderView?
+    var url: URL?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +31,14 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         }
     }
 
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        if url != nil {
+            setVideoURLView.setURL(url: url!, views: sliderView!)
+        }
+    }
+
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         // Local variable inserted by Swift 4.2 migrator.
         let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
@@ -37,17 +46,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         guard let mediaType = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.mediaType)] as? String,
             mediaType == (kUTTypeMovie as String),
 
-        let url = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.mediaURL)] as? URL else { return }
-
-        sliderView!.aVPlayerModel.video(url: url)
+        let urls = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.mediaURL)] as? URL else { return }
+        url = urls
+        sliderView!.aVPlayerModel.video(url: urls)
         
-        let dataImages = setVideoURLView.dataArray.map { (images) -> UIImage in
-            let resizeImage: UIImage = UIImage(data: images)!.ResizeUIImage(width: collectionItemSize, height:collectionItemSize)
-            print(resizeImage)
-            return  resizeImage
-       
-        }
-        print(dataImages)
         dismiss(animated: true)
     }
 
@@ -61,3 +63,17 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         return input.rawValue
     }
 }
+
+public extension UIImage {
+    func ResizeUIImage(width : CGFloat, height : CGFloat)-> UIImage! {
+        UIGraphicsBeginImageContextWithOptions(CGSize(width: width, height: height),true,0.0)
+        
+        self.draw(in: CGRect(x: 0, y: 0, width: width, height: height))
+        
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return newImage
+    }
+}
+

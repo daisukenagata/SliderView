@@ -15,11 +15,13 @@ final class SliderView: UIView {
     @IBOutlet weak var slider: UISlider!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var durationLabel: UILabel!
-
+    
+    @IBOutlet weak var imageViews: UIImageView!
+    
     private var currentValue = Float()
 
     var aVPlayerModel = AVPlayerModel()
-
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
 
@@ -38,10 +40,10 @@ final class SliderView: UIView {
         view.frame = UIScreen.main.bounds
         self.addSubview(view)
     }
-
+    
     // Duration and origin
     @objc func onChange(change: UISlider) {
-
+        
         let nowTime = aVPlayerModel.videoTime()
         timeLabel.text = nowTime.description
 
