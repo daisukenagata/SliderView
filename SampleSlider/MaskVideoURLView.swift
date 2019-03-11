@@ -15,33 +15,35 @@ public class MaskVideoURLView: UIView {
     var videoURL  = URL(fileURLWithPath: "")
     public let imageView = UIImageView()
     public var thumbnailViews = [UIImageView]()
-    
+    public var views = UIView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        self.frame = CGRect(x: 44, y: 44, width: 44, height: 44)
+        self.frame = CGRect(x: 0, y: 100, width: UIScreen.main.bounds.width, height: 44)
+        views.frame = self.frame
     }
     
     required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setURL(url: URL, views: SliderView) {
+    func setURL(url: URL,sliderView: SliderView) {
         self.duration = MaskVideoURLView().videoDuration(videoURL: url)
         self.videoURL = url
-        self.updateThumbnails(views: views)
+        self.updateThumbnails(sliderView: sliderView)
     }
     
-    private func updateThumbnails(views: SliderView) {
+    private func updateThumbnails(sliderView: SliderView){
         
         let backgroundQueue = DispatchQueue(label: "com.app.queue", qos: .background, target: nil)
-        backgroundQueue.async { _ = self.updateThumbnails(view: views, videoURL: self.videoURL, duration: self.duration) }
+        backgroundQueue.async { _ = self.updateThumbnails(sliderView: sliderView, videoURL: self.videoURL, duration: self.duration) }
     }
     
     private func thumbnailCount(inView: SliderView) -> Int {
         var num :Double = 0
-        DispatchQueue.main.sync { num = Double(UIScreen.main.bounds.width) / Double(44) }
+        
+        DispatchQueue.main.sync { num = Double(inView.frame.size.width) / Double(44) }
         return Int(ceil(num))
     }
     
@@ -58,7 +60,7 @@ public class MaskVideoURLView: UIView {
         return UIImage()
     }
     
-    private func updateThumbnails(view: SliderView, videoURL: URL, duration: Float64) -> [UIImageView] {
+    private func updateThumbnails(sliderView: SliderView, videoURL: URL, duration: Float64) -> [UIImageView] {
         var thumbnails = [UIImage]()
         var offset: Float64 = 0
         
@@ -66,7 +68,7 @@ public class MaskVideoURLView: UIView {
             DispatchQueue.main.sync { view.removeFromSuperview() }
         }
         
-        let imagesCount = self.thumbnailCount(inView: view)
+        let imagesCount = self.thumbnailCount(inView: sliderView)
         for i in 0..<imagesCount{
             DispatchQueue.main.sync {
                 let thumbnail = thumbnailFromVideo(videoUrl: videoURL,
@@ -75,7 +77,7 @@ public class MaskVideoURLView: UIView {
                 thumbnails.append(thumbnail)
             }
         }
-        self.addImagesToView(images: thumbnails, view: view)
+        self.addImagesToView(images: thumbnails, sliderView: sliderView)
         return self.thumbnailViews
     }
     
@@ -84,39 +86,26 @@ public class MaskVideoURLView: UIView {
         return CMTimeGetSeconds(source.duration)
     }
     
-    private func addImagesToView(images: [UIImage], view: SliderView) {
-        var xPos: CGFloat = 44
-        var i = 0
-        DispatchQueue.main.async {
-            for image in images{
-                self.imageView.image = image
-                self.imageView.clipsToBounds = true
-                self.imageView.frame = CGRect(x: xPos,
-                                         y: 44,
+    private func addImagesToView(images: [UIImage], sliderView: SliderView) {
+
+        thumbnailViews.removeAll()
+        var xPos: CGFloat = 0.0
+        var count: Int = 0
+        for image in images{
+            DispatchQueue.main.sync {
+                let imageViews = UIImageView()
+                imageViews.image = image
+
+                imageViews.clipsToBounds = true
+                imageViews.frame = CGRect(x: xPos,
+                                         y: 100,
                                          width: 44,
                                          height: 44)
-                
-                self.thumbnailViews.append(self.imageView)
-                view.sendSubviewToBack(self.thumbnailViews[i])
-                i += 1
-                xPos += 24
+                thumbnailViews.append(imageViews)
+                sliderView.addSubview(thumbnailViews[count])
+                count += 1
+                xPos += 44
             }
         }
-    }
-}
-
-
-extension CGImage {
-    func resize(_ image: CGImage) -> CGImage? {
-        let maxWidth: CGFloat = CGFloat(UIScreen.main.bounds.width)
-        let maxHeight: CGFloat = CGFloat(UIScreen.main.bounds.height)
-
-        guard let colorSpace = image.colorSpace else { return nil }
-        guard let context = CGContext(data: nil, width: Int(maxWidth), height: Int(maxHeight), bitsPerComponent: image.bitsPerComponent, bytesPerRow: image.bytesPerRow, space: colorSpace, bitmapInfo: image.alphaInfo.rawValue) else { return nil }
-
-        context.interpolationQuality = .high
-        context.draw(image, in: CGRect(x: 0, y: 0, width: Int(maxWidth), height: Int(maxHeight)))
-
-        return context.makeImage()
     }
 }

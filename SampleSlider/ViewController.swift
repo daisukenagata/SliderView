@@ -28,16 +28,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             self.pic.allowsEditing = true
             self.pic.delegate = self
             self.present(self.pic, animated: true)
+            
         }
     }
 
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        
-        if url != nil {
-            setVideoURLView.setURL(url: url!, views: sliderView!)
-        }
-    }
 
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         // Local variable inserted by Swift 4.2 migrator.
@@ -49,7 +43,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         let urls = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.mediaURL)] as? URL else { return }
         url = urls
         sliderView!.aVPlayerModel.video(url: urls)
-        
+        if url != nil {
+            setVideoURLView.setURL(url: url!,sliderView: sliderView!)
+        }
         dismiss(animated: true)
     }
 
