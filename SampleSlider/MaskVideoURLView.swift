@@ -43,7 +43,7 @@ public class MaskVideoURLView: UIView {
     private func thumbnailCount(inView: SliderView) -> Int {
         var num :Double = 0
         
-        DispatchQueue.main.sync { num = Double(inView.frame.size.width) / Double(44) }
+        DispatchQueue.main.sync { num = Double(inView.frame.size.width) / Double(4) }
         return Int(ceil(num))
     }
     
@@ -99,12 +99,12 @@ public class MaskVideoURLView: UIView {
                 imageViews.clipsToBounds = true
                 imageViews.frame = CGRect(x: xPos,
                                          y: 100,
-                                         width: 44,
+                                         width: 4,
                                          height: 44)
                 thumbnailViews.append(imageViews)
                 sliderView.addSubview(thumbnailViews[count])
                 count += 1
-                xPos += 44
+                xPos += 4
             }
         }
     }
