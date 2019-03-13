@@ -38,13 +38,6 @@ public class MaskVideoURLView: UIView {
         backgroundQueue.async { _ = self.updateThumbnails(sliderView: sliderView, videoURL: self.videoURL, duration: self.duration) }
     }
 
-    private func thumbnailCount(inView: SliderView) -> Int {
-        var num :Double = 0
-
-        DispatchQueue.main.sync { num = self.duration }
-        return Int(ceil(num))
-    }
-
     private func thumbnailFromVideo(videoUrl: URL, time: CMTime) -> UIImage {
         let asset: AVAsset = AVAsset(url: videoUrl) as AVAsset
         let imgGenerator = AVAssetImageGenerator(asset: asset)
@@ -60,18 +53,15 @@ public class MaskVideoURLView: UIView {
 
     private func updateThumbnails(sliderView: SliderView, videoURL: URL, duration: Float64) -> [UIImageView] {
         var thumbnails = [UIImage]()
-        var offset: Float64 = 0
         
         for view in self.thumbnailViews{
             DispatchQueue.main.sync { view.removeFromSuperview() }
         }
 
-        let imagesCount = self.thumbnailCount(inView: sliderView)
-        for i in 0..<imagesCount{
+        for i in 0...Int(ceil(duration)) {
             DispatchQueue.main.sync {
                 let thumbnail = thumbnailFromVideo(videoUrl: videoURL,
-                                                   time: CMTimeMake(value: Int64(offset), timescale: 1))
-                offset = Float64(i) * (duration / Float64(imagesCount))
+                                                   time: CMTimeMake(value: Int64(i), timescale: 1))
                 thumbnails.append(thumbnail)
             }
         }
@@ -91,7 +81,8 @@ public class MaskVideoURLView: UIView {
             var xPos: CGFloat = 0.0
             var count: Int = 0
 
-            let width = Double(sliderView.frame.size.width) / (self.duration)
+            let width = Double(sliderView.frame.size.width) / (ceil(duration) + 1)
+        
             for image in images {
                 let imageViews = UIImageView()
                 imageViews.image = image
