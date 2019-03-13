@@ -15,38 +15,36 @@ public class MaskVideoURLView: UIView {
     var videoURL  = URL(fileURLWithPath: "")
     public let imageView = UIImageView()
     public var thumbnailViews = [UIImageView]()
-    public var views = UIView()
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         
         self.frame = CGRect(x: 0, y: 100, width: UIScreen.main.bounds.width, height: 44)
-        views.frame = self.frame
     }
-    
+
     required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     func setURL(url: URL,sliderView: SliderView) {
-        self.duration = MaskVideoURLView().videoDuration(videoURL: url)
+        self.duration = sliderView.aVPlayerModel.videoDurationTime()
         self.videoURL = url
         self.updateThumbnails(sliderView: sliderView)
     }
-    
+
     private func updateThumbnails(sliderView: SliderView){
-        
+    
         let backgroundQueue = DispatchQueue(label: "com.app.queue", qos: .background, target: nil)
         backgroundQueue.async { _ = self.updateThumbnails(sliderView: sliderView, videoURL: self.videoURL, duration: self.duration) }
     }
-    
+
     private func thumbnailCount(inView: SliderView) -> Int {
         var num :Double = 0
-        
-        DispatchQueue.main.sync { num = Double(inView.frame.size.width) / Double(4) }
+
+        DispatchQueue.main.sync { num = self.duration }
         return Int(ceil(num))
     }
-    
+
     private func thumbnailFromVideo(videoUrl: URL, time: CMTime) -> UIImage {
         let asset: AVAsset = AVAsset(url: videoUrl) as AVAsset
         let imgGenerator = AVAssetImageGenerator(asset: asset)
@@ -56,10 +54,10 @@ public class MaskVideoURLView: UIView {
             let uiImage = UIImage(cgImage: cgImage)
             return uiImage
         } catch { print("error") }
-        
+
         return UIImage()
     }
-    
+
     private func updateThumbnails(sliderView: SliderView, videoURL: URL, duration: Float64) -> [UIImageView] {
         var thumbnails = [UIImage]()
         var offset: Float64 = 0
@@ -67,7 +65,7 @@ public class MaskVideoURLView: UIView {
         for view in self.thumbnailViews{
             DispatchQueue.main.sync { view.removeFromSuperview() }
         }
-        
+
         let imagesCount = self.thumbnailCount(inView: sliderView)
         for i in 0..<imagesCount{
             DispatchQueue.main.sync {
@@ -80,31 +78,33 @@ public class MaskVideoURLView: UIView {
         self.addImagesToView(images: thumbnails, sliderView: sliderView)
         return self.thumbnailViews
     }
-    
+
     private func videoDuration(videoURL: URL) -> Float64 {
         let source = AVURLAsset(url: videoURL)
         return CMTimeGetSeconds(source.duration)
     }
-    
+
     private func addImagesToView(images: [UIImage], sliderView: SliderView) {
 
-        thumbnailViews.removeAll()
-        var xPos: CGFloat = 0.0
-        var count: Int = 0
-        for image in images{
-            DispatchQueue.main.sync {
+        DispatchQueue.main.sync {
+            thumbnailViews.removeAll()
+            var xPos: CGFloat = 0.0
+            var count: Int = 0
+
+            let width = Double(sliderView.frame.size.width) / (self.duration)
+            for image in images {
                 let imageViews = UIImageView()
                 imageViews.image = image
-
+                
                 imageViews.clipsToBounds = true
                 imageViews.frame = CGRect(x: xPos,
-                                         y: 100,
-                                         width: 4,
-                                         height: 44)
+                                          y: self.frame.origin.y,
+                                          width: CGFloat(width),
+                                          height: self.frame.height)
                 thumbnailViews.append(imageViews)
                 sliderView.addSubview(thumbnailViews[count])
                 count += 1
-                xPos += 4
+                xPos += CGFloat(width)
             }
         }
     }

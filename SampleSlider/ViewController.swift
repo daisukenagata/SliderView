@@ -9,7 +9,7 @@
 import UIKit
 import Photos
 import MobileCoreServices
-let collectionItemSize: CGFloat = 88
+
 
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
   
@@ -32,6 +32,13 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         }
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+
+        if url != nil {
+            setVideoURLView.setURL(url: url!,sliderView: sliderView!)
+        }
+    }
 
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         // Local variable inserted by Swift 4.2 migrator.
@@ -43,9 +50,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         let urls = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.mediaURL)] as? URL else { return }
         url = urls
         sliderView!.aVPlayerModel.video(url: urls)
-        if url != nil {
-            setVideoURLView.setURL(url: url!,sliderView: sliderView!)
-        }
+
         dismiss(animated: true)
     }
 
@@ -59,17 +64,3 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         return input.rawValue
     }
 }
-
-public extension UIImage {
-    func ResizeUIImage(width : CGFloat, height : CGFloat)-> UIImage! {
-        UIGraphicsBeginImageContextWithOptions(CGSize(width: width, height: height),true,0.0)
-        
-        self.draw(in: CGRect(x: 0, y: 0, width: width, height: height))
-        
-        let newImage = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        
-        return newImage
-    }
-}
-

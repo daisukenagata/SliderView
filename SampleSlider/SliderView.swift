@@ -44,13 +44,13 @@ final class SliderView: UIView {
     // Duration and origin
     @objc func onChange(change: UISlider) {
         
-        let nowTime = aVPlayerModel.videoTime()
+        let nowTime = aVPlayerModel.currentTime()
         timeLabel.text = nowTime.description
 
-        let currentTime = aVPlayerModel.videoCurrentTime()
+        let currentTime = aVPlayerModel.videoDurationTime()
         aVPlayerModel.videoSeek(change: change.value)
         durationLabel.text = currentTime.description
-
+        
         slider.minimumValue = 0
         slider.maximumValue = Float(currentTime)
 
