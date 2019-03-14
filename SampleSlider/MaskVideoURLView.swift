@@ -10,7 +10,7 @@ import UIKit
 import AVFoundation
 
 public class MaskVideoURLView: UIView {
-    
+
     var duration: Float64   = 0.0
     var videoURL  = URL(fileURLWithPath: "")
     public let imageView = UIImageView()
@@ -18,7 +18,7 @@ public class MaskVideoURLView: UIView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
+
         self.frame = CGRect(x: 0, y: 100, width: UIScreen.main.bounds.width, height: 44)
     }
 
@@ -32,29 +32,16 @@ public class MaskVideoURLView: UIView {
         self.updateThumbnails(sliderView: sliderView)
     }
 
-    private func updateThumbnails(sliderView: SliderView){
-    
+    private func updateThumbnails(sliderView: SliderView) {
+
         let backgroundQueue = DispatchQueue(label: "com.app.queue", qos: .background, target: nil)
         backgroundQueue.async { _ = self.updateThumbnails(sliderView: sliderView, videoURL: self.videoURL, duration: self.duration) }
     }
 
-    private func thumbnailFromVideo(videoUrl: URL, time: CMTime) -> UIImage {
-        let asset: AVAsset = AVAsset(url: videoUrl) as AVAsset
-        let imgGenerator = AVAssetImageGenerator(asset: asset)
-        imgGenerator.appliesPreferredTrackTransform = true
-        do{
-            let cgImage = try imgGenerator.copyCGImage(at: time, actualTime: nil)
-            let uiImage = UIImage(cgImage: cgImage)
-            return uiImage
-        } catch { print("error") }
-
-        return UIImage()
-    }
-
     private func updateThumbnails(sliderView: SliderView, videoURL: URL, duration: Float64) -> [UIImageView] {
         var thumbnails = [UIImage]()
-        
-        for view in self.thumbnailViews{
+
+        for view in self.thumbnailViews {
             DispatchQueue.main.sync { view.removeFromSuperview() }
         }
 
@@ -69,9 +56,18 @@ public class MaskVideoURLView: UIView {
         return self.thumbnailViews
     }
 
-    private func videoDuration(videoURL: URL) -> Float64 {
-        let source = AVURLAsset(url: videoURL)
-        return CMTimeGetSeconds(source.duration)
+    private func thumbnailFromVideo(videoUrl: URL, time: CMTime) -> UIImage {
+        let asset: AVAsset = AVAsset(url: videoUrl) as AVAsset
+        let imgGenerator = AVAssetImageGenerator(asset: asset)
+        imgGenerator.appliesPreferredTrackTransform = true
+
+        do{
+            let cgImage = try imgGenerator.copyCGImage(at: time, actualTime: nil)
+            let uiImage = UIImage(cgImage: cgImage)
+            return uiImage
+        } catch { print("error") }
+
+        return UIImage()
     }
 
     private func addImagesToView(images: [UIImage], sliderView: SliderView) {
@@ -82,11 +78,11 @@ public class MaskVideoURLView: UIView {
             var count: Int = 0
 
             let width = Double(sliderView.frame.size.width) / (ceil(duration) + 1)
-        
+
             for image in images {
                 let imageViews = UIImageView()
                 imageViews.image = image
-                
+
                 imageViews.clipsToBounds = true
                 imageViews.frame = CGRect(x: xPos,
                                           y: self.frame.origin.y,
