@@ -87,13 +87,11 @@ public class MaskVideoURLView: UIView {
                                           y: self.frame.origin.y,
                                           width: CGFloat(width),
                                           height: self.frame.height)
-                sliderView.preImageView.frame = imageViews.frame
                 thumbnailViews.append(imageViews)
                 sliderView.addSubview(thumbnailViews[count])
                 count += 1
                 xPos += CGFloat(width)
             }
-            sliderView.addSubview(sliderView.preImageView)
         }
     }
 }

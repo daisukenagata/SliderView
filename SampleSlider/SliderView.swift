@@ -20,11 +20,10 @@ final class SliderView: UIView, UIGestureRecognizerDelegate {
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var durationLabel: UILabel!
 
-    var preImageView = UIImageView()
+    var aVPlayerModel = AVPlayerModel()
     private var currentValue = Float()
     private var nowTime = CGFloat()
     private var currentTime = Float64()
-    var aVPlayerModel = AVPlayerModel()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -63,20 +62,17 @@ final class SliderView: UIView, UIGestureRecognizerDelegate {
             slider.maximumValue = Float(currentTime)
             break
         case .changed:
-            let value = Float64(position.x-preImageView.frame.width) * (aVPlayerModel.videoDurationTime() / Float64(self.frame.width-preImageView.frame.width))
+            let value = Float64(position.x) * (aVPlayerModel.videoDurationTime() / Float64(self.frame.width))
 
-            slider.value = Float(value) + Float(preImageView.frame.width/4)
+            slider.value = Float(value)
             timeLabel.text = nowTime.description
             aVPlayerModel.videoSeek(change: Float(value))
 
-            let currentValue = Float(UIScreen.main.bounds.width - preImageView.frame.width) / Float(currentTime)
+            let currentValue = Float(UIScreen.main.bounds.width - thumnaiIImageView.frame.width) / Float(currentTime)
             let changeOrigin = currentValue * Float(value)
 
             thumnaiIImageView.frame.origin.x = CGFloat(changeOrigin)
             thumnaiIImageView.image = aVPlayerModel.videoImageViews(nowTime: nowTime)
-
-            preImageView.frame.origin.x = CGFloat(changeOrigin)
-            preImageView.image = aVPlayerModel.videoImageViews(nowTime: nowTime)
             break
         case .cancelled:
             break
@@ -101,10 +97,8 @@ final class SliderView: UIView, UIGestureRecognizerDelegate {
         let currentValue = Float(UIScreen.main.bounds.width - thumnaiIImageView.frame.width) / Float(currentTime)
         let changeOrigin = currentValue * change.value
 
-        preImageView.frame.origin.x = CGFloat(changeOrigin)
-        preImageView.image = aVPlayerModel.videoImageViews(nowTime: nowTime)
-
         thumnaiIImageView.frame.origin.x = CGFloat(changeOrigin)
         thumnaiIImageView.image = aVPlayerModel.videoImageViews(nowTime: nowTime)
     }
+
 }
