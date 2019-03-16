@@ -13,7 +13,7 @@ import MobileCoreServices
 
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
   
-    var setVideoURLView = MaskVideoURLView()
+    var setVideoURLView = MaskVideoModel()
     var pic = UIImagePickerController()
     var sliderView: SliderView?
     var url: URL?
@@ -35,7 +35,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
 
-        if url != nil { setVideoURLView.setURL(url: url!,sliderView: sliderView!) }
+        if url != nil { setVideoURLView.setURL(url: url!,sliderView: sliderView!, heightY: 100, height: 44) }
     }
 
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {

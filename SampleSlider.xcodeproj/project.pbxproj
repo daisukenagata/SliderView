@@ -15,7 +15,7 @@
 		BB5F44842226E95A00C77C54 /* SliderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB5F44832226E95A00C77C54 /* SliderView.xib */; };
 		BB5F44862226E9E300C77C54 /* SliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5F44852226E9E300C77C54 /* SliderView.swift */; };
 		BBABDFE6223552E200959558 /* AVPlayerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBABDFE5223552E200959558 /* AVPlayerModel.swift */; };
-		BBABDFE82235CB6C00959558 /* MaskVideoURLView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBABDFE72235CB6C00959558 /* MaskVideoURLView.swift */; };
+		BBABDFE82235CB6C00959558 /* MaskVideoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBABDFE72235CB6C00959558 /* MaskVideoModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,7 +29,7 @@
 		BB5F44832226E95A00C77C54 /* SliderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SliderView.xib; sourceTree = "<group>"; };
 		BB5F44852226E9E300C77C54 /* SliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderView.swift; sourceTree = "<group>"; };
 		BBABDFE5223552E200959558 /* AVPlayerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVPlayerModel.swift; sourceTree = "<group>"; };
-		BBABDFE72235CB6C00959558 /* MaskVideoURLView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaskVideoURLView.swift; sourceTree = "<group>"; };
+		BBABDFE72235CB6C00959558 /* MaskVideoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaskVideoModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +43,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BB0CE843223D86E000A6A1B8 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				BBABDFE72235CB6C00959558 /* MaskVideoModel.swift */,
+				BBABDFE5223552E200959558 /* AVPlayerModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		BB0CE844223D86EF00A6A1B8 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BB5F44852226E9E300C77C54 /* SliderView.swift */,
+				BB5F44832226E95A00C77C54 /* SliderView.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		BB5F44652226DB2500C77C54 = {
 			isa = PBXGroup;
 			children = (
@@ -64,10 +82,8 @@
 			children = (
 				BB5F44712226DB2500C77C54 /* AppDelegate.swift */,
 				BB5F44732226DB2500C77C54 /* ViewController.swift */,
-				BBABDFE72235CB6C00959558 /* MaskVideoURLView.swift */,
-				BB5F44832226E95A00C77C54 /* SliderView.xib */,
-				BB5F44852226E9E300C77C54 /* SliderView.swift */,
-				BBABDFE5223552E200959558 /* AVPlayerModel.swift */,
+				BB0CE844223D86EF00A6A1B8 /* View */,
+				BB0CE843223D86E000A6A1B8 /* Model */,
 				BB5F44752226DB2500C77C54 /* Main.storyboard */,
 				BB5F44782226DB2700C77C54 /* Assets.xcassets */,
 				BB5F447A2226DB2700C77C54 /* LaunchScreen.storyboard */,
@@ -148,7 +164,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BBABDFE82235CB6C00959558 /* MaskVideoURLView.swift in Sources */,
+				BBABDFE82235CB6C00959558 /* MaskVideoModel.swift in Sources */,
 				BB5F44742226DB2500C77C54 /* ViewController.swift in Sources */,
 				BB5F44862226E9E300C77C54 /* SliderView.swift in Sources */,
 				BB5F44722226DB2500C77C54 /* AppDelegate.swift in Sources */,

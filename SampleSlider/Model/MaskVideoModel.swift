@@ -9,24 +9,20 @@
 import UIKit
 import AVFoundation
 
-public class MaskVideoURLView: UIView {
+public class MaskVideoModel {
 
-    var duration: Float64   = 0.0
-    var videoURL  = URL(fileURLWithPath: "")
-    var thumbnailViews = [UIImageView]()
-    let imageView = UIImageView()
+    private var videoURL  = URL(fileURLWithPath: "")
+    private var thumbnailViews = [UIImageView]()
+    private var duration: Float64   = 0.0
+    private var heightY = CGFloat()
+    private var height = CGFloat()
 
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    private let imageView = UIImageView()
 
-        self.frame = CGRect(x: 0, y: 100, width: UIScreen.main.bounds.width, height: 44)
-    }
 
-    required public init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
-    func setURL(url: URL,sliderView: SliderView) {
+    func setURL(url: URL,sliderView: SliderView ,heightY: CGFloat ,height: CGFloat ) {
+        self.heightY = heightY
+        self.height = height
         self.duration = sliderView.aVPlayerModel.videoDurationTime()
         self.videoURL = url
         self.updateThumbnails(sliderView: sliderView)
@@ -84,9 +80,9 @@ public class MaskVideoURLView: UIView {
 
                 imageViews.clipsToBounds = true
                 imageViews.frame = CGRect(x: xPos,
-                                          y: self.frame.origin.y,
+                                          y: heightY,
                                           width: CGFloat(width),
-                                          height: self.frame.height)
+                                          height: height)
                 thumbnailViews.append(imageViews)
                 sliderView.addSubview(thumbnailViews[count])
                 count += 1
