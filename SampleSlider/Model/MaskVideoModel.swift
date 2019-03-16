@@ -20,21 +20,26 @@ public class MaskVideoModel {
     private let imageView = UIImageView()
 
 
-    func setURL(url: URL,sliderView: SliderView ,heightY: CGFloat ,height: CGFloat ) {
+    func setURL(url: URL,sliderView: UIView ,heightY: CGFloat ,height: CGFloat ) {
         self.heightY = heightY
         self.height = height
-        self.duration = sliderView.aVPlayerModel.videoDurationTime()
+        self.duration = videoDuration(videoURL: url)
         self.videoURL = url
         self.updateThumbnails(sliderView: sliderView)
     }
 
-    private func updateThumbnails(sliderView: SliderView) {
+    private func videoDuration(videoURL: URL) -> Float64 {
+        let source = AVURLAsset(url: videoURL)
+        return CMTimeGetSeconds(source.duration)
+    }
+
+    private func updateThumbnails(sliderView: UIView) {
 
         let backgroundQueue = DispatchQueue(label: "com.app.queue", qos: .background, target: nil)
         backgroundQueue.async { _ = self.updateThumbnails(sliderView: sliderView, videoURL: self.videoURL, duration: self.duration) }
     }
 
-    private func updateThumbnails(sliderView: SliderView, videoURL: URL, duration: Float64) -> [UIImageView] {
+    private func updateThumbnails(sliderView: UIView, videoURL: URL, duration: Float64) -> [UIImageView] {
         var thumbnails = [UIImage]()
 
         for view in self.thumbnailViews {
@@ -66,7 +71,7 @@ public class MaskVideoModel {
         return UIImage()
     }
 
-    private func addImagesToView(images: [UIImage], sliderView: SliderView) {
+    private func addImagesToView(images: [UIImage], sliderView: UIView) {
 
         DispatchQueue.main.sync {
             thumbnailViews.removeAll()
