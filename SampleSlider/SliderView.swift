@@ -23,7 +23,7 @@ final class SliderView: UIView, UIGestureRecognizerDelegate {
     var aVPlayerModel = AVPlayerModel()
     private var currentValue = Float()
     private var nowTime = CGFloat()
-    private var currentTime = Float64()
+
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -49,7 +49,6 @@ final class SliderView: UIView, UIGestureRecognizerDelegate {
 
     @objc func panTapped(sender: UIPanGestureRecognizer) {
         let position: CGPoint = sender.location(in: self)
-        let nowTime = aVPlayerModel.currentTime()
 
         switch sender.state {
         case .ended:
@@ -57,22 +56,12 @@ final class SliderView: UIView, UIGestureRecognizerDelegate {
         case .possible:
             break
         case .began:
-            currentTime = aVPlayerModel.videoDurationTime()
-            slider.minimumValue = 0
-            slider.maximumValue = Float(currentTime)
+            currentModel()
             break
         case .changed:
             let value = Float64(position.x) * (aVPlayerModel.videoDurationTime() / Float64(self.frame.width))
-
             slider.value = Float(value)
-            timeLabel.text = nowTime.description
-            aVPlayerModel.videoSeek(change: Float(value))
-
-            let currentValue = Float(UIScreen.main.bounds.width - thumnaiIImageView.frame.width) / Float(currentTime)
-            let changeOrigin = currentValue * Float(value)
-
-            thumnaiIImageView.frame.origin.x = CGFloat(changeOrigin)
-            thumnaiIImageView.image = aVPlayerModel.videoImageViews(nowTime: nowTime)
+            ges(value: Float(value))
             break
         case .cancelled:
             break
@@ -82,23 +71,29 @@ final class SliderView: UIView, UIGestureRecognizerDelegate {
     }
 
     // Duration and origin
-    @objc func onChange(change: UISlider) {
+    @objc func onChange(change: UISlider) { ges(value: change.value) }
+    
+    func currentModel() {
+        let currentTime = aVPlayerModel.videoDurationTime()
+        slider.minimumValue = 0
+        slider.maximumValue = Float(currentTime)
+    }
+
+    func  ges(value: Float) {
+
+        aVPlayerModel.videoSeek(change: value)
 
         let nowTime = aVPlayerModel.currentTime()
         timeLabel.text = nowTime.description
-
+        
         let currentTime = aVPlayerModel.videoDurationTime()
-        aVPlayerModel.videoSeek(change: change.value)
         durationLabel.text = currentTime.description
 
-        slider.minimumValue = 0
-        slider.maximumValue = Float(currentTime)
-
         let currentValue = Float(UIScreen.main.bounds.width - thumnaiIImageView.frame.width) / Float(currentTime)
-        let changeOrigin = currentValue * change.value
+        let changeOrigin = currentValue * Float(value)
+        aVPlayerModel.videoSeek(change: Float(value))
 
         thumnaiIImageView.frame.origin.x = CGFloat(changeOrigin)
         thumnaiIImageView.image = aVPlayerModel.videoImageViews(nowTime: nowTime)
     }
-
 }
