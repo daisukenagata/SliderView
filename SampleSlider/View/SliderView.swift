@@ -21,6 +21,7 @@ final class SliderView: UIView, UIGestureRecognizerDelegate {
     @IBOutlet weak var durationLabel: UILabel!
 
     var aVPlayerModel = AVPlayerModel()
+
     private var currentValue = Float()
     private var nowTime = CGFloat()
 
@@ -56,7 +57,6 @@ final class SliderView: UIView, UIGestureRecognizerDelegate {
         case .possible:
             break
         case .began:
-            currentModel()
             break
         case .changed:
             let value = Float64(position.x) * (aVPlayerModel.videoDurationTime() / Float64(self.frame.width))
@@ -72,21 +72,18 @@ final class SliderView: UIView, UIGestureRecognizerDelegate {
 
     // Duration and origin
     @objc func onChange(change: UISlider) { ges(value: change.value) }
-    
-    func currentModel() {
+
+    func  ges(value: Float) {
+
         let currentTime = aVPlayerModel.videoDurationTime()
         slider.minimumValue = 0
         slider.maximumValue = Float(currentTime)
-    }
-
-    func  ges(value: Float) {
 
         aVPlayerModel.videoSeek(change: value)
 
         let nowTime = aVPlayerModel.currentTime()
         timeLabel.text = nowTime.description
         
-        let currentTime = aVPlayerModel.videoDurationTime()
         durationLabel.text = currentTime.description
 
         let currentValue = Float(UIScreen.main.bounds.width - thumnaiIImageView.frame.width) / Float(currentTime)

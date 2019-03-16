@@ -15,6 +15,7 @@ final class AVPlayerModel {
     var videoPlayer: AVPlayer!
     var urls: URL?
 
+
     func video(url: URL) {
         urls = url
         let avAsset = AVURLAsset(url: url, options: nil)
