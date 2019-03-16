@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BB0CE846223D8C4300A6A1B8 /* ImagePickerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0CE845223D8C4300A6A1B8 /* ImagePickerModel.swift */; };
 		BB5F44722226DB2500C77C54 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5F44712226DB2500C77C54 /* AppDelegate.swift */; };
 		BB5F44742226DB2500C77C54 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5F44732226DB2500C77C54 /* ViewController.swift */; };
 		BB5F44772226DB2500C77C54 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB5F44752226DB2500C77C54 /* Main.storyboard */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BB0CE845223D8C4300A6A1B8 /* ImagePickerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerModel.swift; sourceTree = "<group>"; };
 		BB5F446E2226DB2500C77C54 /* SampleSlider.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SampleSlider.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB5F44712226DB2500C77C54 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BB5F44732226DB2500C77C54 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -48,6 +50,7 @@
 			children = (
 				BBABDFE72235CB6C00959558 /* MaskVideoModel.swift */,
 				BBABDFE5223552E200959558 /* AVPlayerModel.swift */,
+				BB0CE845223D8C4300A6A1B8 /* ImagePickerModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -167,6 +170,7 @@
 				BBABDFE82235CB6C00959558 /* MaskVideoModel.swift in Sources */,
 				BB5F44742226DB2500C77C54 /* ViewController.swift in Sources */,
 				BB5F44862226E9E300C77C54 /* SliderView.swift in Sources */,
+				BB0CE846223D8C4300A6A1B8 /* ImagePickerModel.swift in Sources */,
 				BB5F44722226DB2500C77C54 /* AppDelegate.swift in Sources */,
 				BBABDFE6223552E200959558 /* AVPlayerModel.swift in Sources */,
 			);
