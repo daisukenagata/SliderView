@@ -13,8 +13,8 @@ public class MaskVideoURLView: UIView {
 
     var duration: Float64   = 0.0
     var videoURL  = URL(fileURLWithPath: "")
-    public let imageView = UIImageView()
-    public var thumbnailViews = [UIImageView]()
+    var thumbnailViews = [UIImageView]()
+    let imageView = UIImageView()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -78,7 +78,6 @@ public class MaskVideoURLView: UIView {
             var count: Int = 0
 
             let width = Double(sliderView.frame.size.width) / (ceil(duration) + 1)
-
             for image in images {
                 let imageViews = UIImageView()
                 imageViews.image = image
@@ -88,11 +87,13 @@ public class MaskVideoURLView: UIView {
                                           y: self.frame.origin.y,
                                           width: CGFloat(width),
                                           height: self.frame.height)
+                sliderView.preImageView.frame = imageViews.frame
                 thumbnailViews.append(imageViews)
                 sliderView.addSubview(thumbnailViews[count])
                 count += 1
                 xPos += CGFloat(width)
             }
+            sliderView.addSubview(sliderView.preImageView)
         }
     }
 }

@@ -9,16 +9,20 @@
 import UIKit
 import AVFoundation
 
-final class SliderView: UIView {
+struct CommonStructure {
+    static var panGesture = UIPanGestureRecognizer()
+}
+
+final class SliderView: UIView, UIGestureRecognizerDelegate {
 
     @IBOutlet weak var thumnaiIImageView: UIImageView!
     @IBOutlet weak var slider: UISlider!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var durationLabel: UILabel!
-    
-    @IBOutlet weak var imageViews: UIImageView!
-    
+
+    var preImageView = UIImageView()
     private var currentValue = Float()
+    private var nowTime = CGFloat()
 
     var aVPlayerModel = AVPlayerModel()
     
@@ -27,6 +31,9 @@ final class SliderView: UIView {
 
         loadNib()
         slider.addTarget(self, action: #selector(onChange(change:)), for: .valueChanged)
+        CommonStructure.panGesture = UIPanGestureRecognizer(target: self, action:#selector(panTapped))
+        CommonStructure.panGesture.delegate = self
+        self.addGestureRecognizer(CommonStructure.panGesture)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -41,6 +48,29 @@ final class SliderView: UIView {
         self.addSubview(view)
     }
     
+    @objc func panTapped(sender: UIPanGestureRecognizer) {
+        let position: CGPoint = sender.location(in: self)
+        let nowTime = aVPlayerModel.currentTime()
+        switch sender.state {
+        case .ended:
+            break
+        case .possible:
+            break
+        case .began:
+            break
+        case .changed:
+            let value = Float64(position.x-preImageView.frame.width) * (aVPlayerModel.videoDurationTime() / Float64(self.frame.width-preImageView.frame.width))
+            aVPlayerModel.videoSeek(change: Float(value))
+            preImageView.frame.origin.x = position.x - preImageView.frame.width
+            preImageView.image = aVPlayerModel.videoImageViews(nowTime: nowTime)
+            break
+        case .cancelled:
+            break
+        case .failed:
+            break
+        }
+    }
+
     // Duration and origin
     @objc func onChange(change: UISlider) {
         

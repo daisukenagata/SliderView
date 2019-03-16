@@ -13,7 +13,6 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SliderView" customModule="SampleSlider" customModuleProvider="target">
             <connections>
                 <outlet property="durationLabel" destination="dS8-0f-avy" id="ccK-qE-vQD"/>
-                <outlet property="imageViews" destination="2DK-Cy-0sc" id="kxo-87-RIR"/>
                 <outlet property="slider" destination="gma-Bx-Idb" id="QGT-WY-VVJ"/>
                 <outlet property="thumnaiIImageView" destination="eGV-0m-HZ2" id="9WJ-Ww-mfT"/>
                 <outlet property="timeLabel" destination="PgU-1l-QMN" id="14a-qd-LBH"/>
@@ -52,21 +51,12 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2DK-Cy-0sc">
-                    <rect key="frame" x="0.0" y="44" width="40" height="80"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="80" id="gV8-R4-RVJ"/>
-                        <constraint firstAttribute="width" constant="40" id="z7z-dB-UJz"/>
-                    </constraints>
-                </imageView>
             </subviews>
             <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="eGV-0m-HZ2" firstAttribute="top" secondItem="dS8-0f-avy" secondAttribute="bottom" constant="16" id="4mp-Ao-zxv"/>
-                <constraint firstItem="2DK-Cy-0sc" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="24" id="8Yo-V2-9xb"/>
                 <constraint firstItem="dS8-0f-avy" firstAttribute="top" secondItem="PgU-1l-QMN" secondAttribute="bottom" constant="8" symbolic="YES" id="9Hg-kw-sXs"/>
                 <constraint firstItem="dS8-0f-avy" firstAttribute="leading" secondItem="eGV-0m-HZ2" secondAttribute="leading" id="CAq-oI-CNO"/>
-                <constraint firstItem="2DK-Cy-0sc" firstAttribute="leading" secondItem="PgU-1l-QMN" secondAttribute="leading" id="E0X-f2-QZR"/>
                 <constraint firstItem="gma-Bx-Idb" firstAttribute="top" secondItem="eGV-0m-HZ2" secondAttribute="bottom" constant="24" id="Jrq-qh-hjc"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="gma-Bx-Idb" secondAttribute="bottom" constant="261" id="LSt-s8-13B"/>
                 <constraint firstItem="dS8-0f-avy" firstAttribute="height" secondItem="PgU-1l-QMN" secondAttribute="height" id="Ncw-ub-Zqh"/>
