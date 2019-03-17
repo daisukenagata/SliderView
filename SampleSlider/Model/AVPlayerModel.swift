@@ -10,7 +10,7 @@ import UIKit
 import AVFoundation
 
 final class AVPlayerModel {
-    
+
     var playerItem: AVPlayerItem?
     var videoPlayer: AVPlayer!
     var urls: URL?
@@ -33,7 +33,7 @@ final class AVPlayerModel {
         return  thumbnailFromVideo(videoUrl: url, time: interval)
     }
 
-    func thumbnailFromVideo(videoUrl: URL, time: CMTime) -> UIImage {
+    private func thumbnailFromVideo(videoUrl: URL, time: CMTime) -> UIImage {
         let asset: AVAsset = AVAsset(url: videoUrl) as AVAsset
         let imgGenerator = AVAssetImageGenerator(asset: asset)
         imgGenerator.appliesPreferredTrackTransform = true
