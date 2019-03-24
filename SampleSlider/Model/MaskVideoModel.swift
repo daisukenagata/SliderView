@@ -74,12 +74,11 @@ public final class MaskVideoModel {
             var count: Int = 0
             var xPos: CGFloat = 0.0
             thumbnailViews.removeAll()
-
             let width = Double(sliderView.frame.size.width) / (ceil(duration) + 1)
             for image in images {
                 let imageViews = UIImageView()
                 imageViews.image = image
-
+                
                 imageViews.clipsToBounds = true
                 imageViews.frame = CGRect(x: xPos,
                                           y: heightY,

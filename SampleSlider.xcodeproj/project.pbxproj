@@ -15,6 +15,9 @@
 		BB5F447C2226DB2700C77C54 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB5F447A2226DB2700C77C54 /* LaunchScreen.storyboard */; };
 		BB5F44842226E95A00C77C54 /* SliderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB5F44832226E95A00C77C54 /* SliderView.xib */; };
 		BB5F44862226E9E300C77C54 /* SliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5F44852226E9E300C77C54 /* SliderView.swift */; };
+		BB8F46292248155400F4D5A2 /* CALayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8F46252248155400F4D5A2 /* CALayerView.swift */; };
+		BB8F462A2248155400F4D5A2 /* LineDashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8F46262248155400F4D5A2 /* LineDashView.swift */; };
+		BB8F462C2248155400F4D5A2 /* GestureObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8F46282248155400F4D5A2 /* GestureObject.swift */; };
 		BBABDFE6223552E200959558 /* AVPlayerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBABDFE5223552E200959558 /* AVPlayerModel.swift */; };
 		BBABDFE82235CB6C00959558 /* MaskVideoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBABDFE72235CB6C00959558 /* MaskVideoModel.swift */; };
 /* End PBXBuildFile section */
@@ -30,6 +33,9 @@
 		BB5F447D2226DB2700C77C54 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BB5F44832226E95A00C77C54 /* SliderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SliderView.xib; sourceTree = "<group>"; };
 		BB5F44852226E9E300C77C54 /* SliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderView.swift; sourceTree = "<group>"; };
+		BB8F46252248155400F4D5A2 /* CALayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CALayerView.swift; sourceTree = "<group>"; };
+		BB8F46262248155400F4D5A2 /* LineDashView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineDashView.swift; sourceTree = "<group>"; };
+		BB8F46282248155400F4D5A2 /* GestureObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GestureObject.swift; sourceTree = "<group>"; };
 		BBABDFE5223552E200959558 /* AVPlayerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVPlayerModel.swift; sourceTree = "<group>"; };
 		BBABDFE72235CB6C00959558 /* MaskVideoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaskVideoModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -85,6 +91,7 @@
 			children = (
 				BB5F44712226DB2500C77C54 /* AppDelegate.swift */,
 				BB5F44732226DB2500C77C54 /* ViewController.swift */,
+				BB8F46242248146000F4D5A2 /* Focus */,
 				BB0CE844223D86EF00A6A1B8 /* View */,
 				BB0CE843223D86E000A6A1B8 /* Model */,
 				BB5F44752226DB2500C77C54 /* Main.storyboard */,
@@ -93,6 +100,16 @@
 				BB5F447D2226DB2700C77C54 /* Info.plist */,
 			);
 			path = SampleSlider;
+			sourceTree = "<group>";
+		};
+		BB8F46242248146000F4D5A2 /* Focus */ = {
+			isa = PBXGroup;
+			children = (
+				BB8F46252248155400F4D5A2 /* CALayerView.swift */,
+				BB8F46282248155400F4D5A2 /* GestureObject.swift */,
+				BB8F46262248155400F4D5A2 /* LineDashView.swift */,
+			);
+			path = Focus;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -167,8 +184,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BB8F462C2248155400F4D5A2 /* GestureObject.swift in Sources */,
+				BB8F462A2248155400F4D5A2 /* LineDashView.swift in Sources */,
 				BBABDFE82235CB6C00959558 /* MaskVideoModel.swift in Sources */,
 				BB5F44742226DB2500C77C54 /* ViewController.swift in Sources */,
+				BB8F46292248155400F4D5A2 /* CALayerView.swift in Sources */,
 				BB5F44862226E9E300C77C54 /* SliderView.swift in Sources */,
 				BB0CE846223D8C4300A6A1B8 /* ImagePickerModel.swift in Sources */,
 				BB5F44722226DB2500C77C54 /* AppDelegate.swift in Sources */,
