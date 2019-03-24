@@ -10,7 +10,7 @@ import UIKit
 import Photos
 import MobileCoreServices
 
-class ViewController: UIViewController, UIImagePickerControllerDelegate & UINavigationControllerDelegate {
+final class ViewController: UIViewController, UIImagePickerControllerDelegate & UINavigationControllerDelegate {
 
     var setVideoModel = MaskVideoModel()
     var sliderView: SliderView?

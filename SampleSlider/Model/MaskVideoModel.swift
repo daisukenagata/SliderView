@@ -9,20 +9,20 @@
 import UIKit
 import AVFoundation
 
-public class MaskVideoModel {
+public final class MaskVideoModel {
 
-    private var videoURL  = URL(fileURLWithPath: "")
-    private var thumbnailViews = [UIImageView]()
-    private var duration: Float64   = 0.0
-    private var heightY = CGFloat()
     private var height = CGFloat()
+    private var heightY = CGFloat()
+    private var duration: Float64   = 0.0
+    private var thumbnailViews = [UIImageView]()
+    private var videoURL  = URL(fileURLWithPath: "")
 
 
     func setURL(url: URL,sliderView: UIView ,heightY: CGFloat ,height: CGFloat ) {
-        self.heightY = heightY
-        self.height = height
-        self.duration = videoDuration(videoURL: url)
         self.videoURL = url
+        self.height = height
+        self.heightY = heightY
+        self.duration = videoDuration(videoURL: url)
         self.updateThumbnails(sliderView: sliderView)
     }
 
@@ -32,7 +32,6 @@ public class MaskVideoModel {
     }
 
     private func updateThumbnails(sliderView: UIView) {
-
         let backgroundQueue = DispatchQueue(label: "com.app.queue", qos: .background, target: nil)
         backgroundQueue.async { _ = self.updateThumbnails(sliderView: sliderView, videoURL: self.videoURL, duration: self.duration) }
     }
@@ -72,9 +71,9 @@ public class MaskVideoModel {
     private func addImagesToView(images: [UIImage], sliderView: UIView) {
 
         DispatchQueue.main.sync {
-            thumbnailViews.removeAll()
-            var xPos: CGFloat = 0.0
             var count: Int = 0
+            var xPos: CGFloat = 0.0
+            thumbnailViews.removeAll()
 
             let width = Double(sliderView.frame.size.width) / (ceil(duration) + 1)
             for image in images {

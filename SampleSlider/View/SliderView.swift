@@ -25,7 +25,7 @@ final class SliderView: UIView, UIGestureRecognizerDelegate {
     private var currentValue = Float()
     private var nowTime = CGFloat()
 
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
 
