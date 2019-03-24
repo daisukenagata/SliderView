@@ -17,8 +17,6 @@ public class MaskVideoModel {
     private var heightY = CGFloat()
     private var height = CGFloat()
 
-    private let imageView = UIImageView()
-
 
     func setURL(url: URL,sliderView: UIView ,heightY: CGFloat ,height: CGFloat ) {
         self.heightY = heightY
