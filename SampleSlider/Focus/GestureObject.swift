@@ -30,7 +30,7 @@ class GestureObject: UIView {
         if leftRect.contains(point) {
             return TouchFlag.touchSideLeft
         }
-        
+
         var rightRect = leftRect
         rightRect.origin.x = frame.maxX  - CGFloat(64)
         if rightRect.contains(point) {

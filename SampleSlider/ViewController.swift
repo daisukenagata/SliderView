@@ -31,6 +31,16 @@ final class ViewController: UIViewController, UIImagePickerControllerDelegate & 
         super.viewDidAppear(true)
 
         if url != nil {
+            sliderView!.aVPlayerModel.video(url: url!)
+            setVideoModel.setURL(url: url!,sliderView: sliderView!, heightY: 100, height: 100)
+            sliderView?.vcs.frame = CGRect(x: 0, y: 100, width: view.frame.width, height: 100)
+            setLayer()
+        }
+    }
+
+    func setLayer() {
+        // Think Logic
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1){
             self.sliderView?.addView()
         }
     }
@@ -44,11 +54,6 @@ final class ViewController: UIViewController, UIImagePickerControllerDelegate & 
 
             let urls = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.mediaURL)] as? URL else { return }
         url = urls
-        if url != nil {
-            sliderView!.aVPlayerModel.video(url: url!)
-            setVideoModel.setURL(url: url!,sliderView: sliderView!, heightY: 100, height: 100)
-            sliderView?.vcs.frame = CGRect(x: 0, y: 100, width: view.frame.width, height: 100)
-        }
         dismiss(animated: true)
     }
 

@@ -18,6 +18,7 @@ final class SliderView: UIView, UIGestureRecognizerDelegate {
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var durationLabel: UILabel!
 
+    private var keyValueObservations = [NSKeyValueObservation]()
     private var currentValue = Float()
     private var nowTime = CGFloat()
 
@@ -61,7 +62,9 @@ final class SliderView: UIView, UIGestureRecognizerDelegate {
         self.addSubview(view)
     }
 
-    func addView() { self.addSubview(vcs) }
+    func addView() {
+        self.addSubview(vcs)
+    }
 
     @objc func panTapped(sender: UIPanGestureRecognizer) {
         let position: CGPoint = sender.location(in: self)
@@ -91,7 +94,7 @@ final class SliderView: UIView, UIGestureRecognizerDelegate {
     // Duration and origin
     @objc func onChange(change: UISlider) { ges(value: change.value) }
 
-    func  ges(value: Float) {
+    func ges(value: Float) {
 
         let currentTime = aVPlayerModel.videoDurationTime()
         slider.minimumValue = 0
