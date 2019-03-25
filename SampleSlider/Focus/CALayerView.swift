@@ -41,6 +41,5 @@ class CALayerLogic {
 
         maskLayer.fillRule = CAShapeLayerFillRule.evenOdd
         hollowTargetLayer.mask = maskLayer
-
     }
 }

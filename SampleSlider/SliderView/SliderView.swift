@@ -13,19 +13,20 @@ struct CommonStructure { static var swipePanGesture = UIPanGestureRecognizer() }
 
 final class SliderView: UIView, UIGestureRecognizerDelegate {
 
-    @IBOutlet weak var thumnaiIImageView: UIImageView!
     @IBOutlet weak var slider: UISlider!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var durationLabel: UILabel!
+    @IBOutlet weak var thumnaiIImageView: UIImageView!
 
-    private var keyValueObservations = [NSKeyValueObservation]()
-    private var currentValue = Float()
     private var nowTime = CGFloat()
+    private var currentValue = Float()
+    private var keyValueObservations = [NSKeyValueObservation]()
 
-    var aVPlayerModel = AVPlayerModel()
+
     var cALayerView = CALayerLogic()
     var lineDashView = LineDashView()
     var gestureObject = GestureObject()
+    var aVPlayerModel = AVPlayerModel()
     var touchFlag = TouchFlag.touchSideLeft
 
     // Example
@@ -36,15 +37,16 @@ final class SliderView: UIView, UIGestureRecognizerDelegate {
 
         loadNib()
         slider.addTarget(self, action: #selector(onChange(change:)), for: .valueChanged)
+
         CommonStructure.swipePanGesture = UIPanGestureRecognizer(target: self, action:#selector(panTapped))
         CommonStructure.swipePanGesture.delegate = self
         self.addGestureRecognizer(CommonStructure.swipePanGesture)
 
-        self.frame = UIScreen.main.bounds
         // Example
         vcs.frame = CGRect(x: 0, y: 100, width: self.frame.width, height: 100)
         vcs.layer.addSublayer(cALayerView.hollowTargetLayer)
         vcs.addSubview(lineDashView)
+
         lineDashView.isHidden = true
 
         cALayerView.tori(views: lineDashView)
@@ -57,6 +59,7 @@ final class SliderView: UIView, UIGestureRecognizerDelegate {
     }
 
     func loadNib() {
+        self.frame = UIScreen.main.bounds
         let view = Bundle.main.loadNibNamed("SliderView", owner: self, options: nil)?.first as! UIView
         view.frame = UIScreen.main.bounds
         self.addSubview(view)
@@ -67,7 +70,6 @@ final class SliderView: UIView, UIGestureRecognizerDelegate {
 
         if lineDashView.isHidden == true { self.addSubview(vcs) }
 
-        //指が離れた際の座標を取得
         DispatchQueue.main.async {
             self.lineDashView.isHidden = false
             //Gesture
@@ -103,7 +105,7 @@ final class SliderView: UIView, UIGestureRecognizerDelegate {
 
         let nowTime = aVPlayerModel.currentTime()
         timeLabel.text = nowTime.description
-        
+
         durationLabel.text = currentTime.description
 
         let currentValue = Float(UIScreen.main.bounds.width - thumnaiIImageView.frame.width) / Float(currentTime)

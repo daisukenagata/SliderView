@@ -8,11 +8,7 @@
 
 import UIKit
 
-enum TouchFlag {
-    case touchSideLeft
-    case touchSideRight
-    case touchNone
-}
+enum TouchFlag { case touchSideLeft, touchSideRight }
 
 class GestureObject: UIView {
 
@@ -36,7 +32,7 @@ class GestureObject: UIView {
         if rightRect.contains(point) {
             return TouchFlag.touchSideRight
         }
-        return TouchFlag.touchNone
+        return TouchFlag.touchSideLeft
     }
     //タップされた領域からMaskするViewのサイズ、座標計算
     func updatePoint(point: CGPoint, views: UIView, touchFlag: TouchFlag)  {
@@ -50,15 +46,12 @@ class GestureObject: UIView {
             views.frame.origin.x =  point.x
             views.frame.size.width =  -point.x + endFrame.maxX
             break
-        case .touchNone:
-            views.frame.origin.x =  point.x
-            views.frame.size.width =  -point.x + endFrame.maxX
-            break
         }
         let kTOCropViewMinimumBoxSize = 22
         // フォーカスの最小枠と最大枠
         let minSize = CGSize(width: kTOCropViewMinimumBoxSize, height: kTOCropViewMinimumBoxSize)
         let maxSize = CGSize(width: views.frame.maxX, height: views.frame.maxY)
+
         views.frame.size.width  = max(views.frame.size.width, minSize.width)
         views.frame.size.height  = max(views.frame.size.height, minSize.height)
 
