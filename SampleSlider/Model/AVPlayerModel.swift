@@ -16,9 +16,9 @@ final class AVPlayerModel {
     var playerItem: AVPlayerItem?
 
 
-    func currentTime() ->Float64 { return CMTimeGetSeconds((videoPlayer.currentItem?.currentTime())!) }
+    func currentTime() -> Float64 { return CMTimeGetSeconds((videoPlayer.currentItem?.currentTime())!) }
 
-    func videoDurationTime() ->Float64 { return CMTimeGetSeconds((videoPlayer.currentItem?.duration)!) }
+    func videoDurationTime() -> Float64 { return CMTimeGetSeconds((videoPlayer.currentItem?.duration)!) }
 
     func videoSeek(change: Float) { videoPlayer.seek(to:CMTimeMakeWithSeconds(Float64(change), preferredTimescale: Int32(NSEC_PER_SEC))) }
 
@@ -29,7 +29,7 @@ final class AVPlayerModel {
         videoPlayer = AVPlayer(playerItem: playerItem)
     }
 
-    func videoImageViews(nowTime: Float64)-> UIImage {
+    func videoImageViews(nowTime: Float64) -> UIImage {
         let interval = CMTime(seconds: nowTime, preferredTimescale: CMTimeScale(NSEC_PER_SEC))
         guard  let url = urls else { return UIImage() }
         return  thumbnailFromVideo(videoUrl: url, time: interval)
@@ -43,7 +43,7 @@ final class AVPlayerModel {
             let cgImage = try imgGenerator.copyCGImage(at: time, actualTime: nil)
             let uiImage = UIImage(cgImage: cgImage)
             return uiImage
-        } catch { print("error") }
+        } catch let error{ print(error,"error") }
 
         return UIImage()
     }
