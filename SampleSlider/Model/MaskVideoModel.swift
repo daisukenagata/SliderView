@@ -70,22 +70,22 @@ public final class MaskVideoModel {
 
     private func addImagesToView(images: [UIImage], sliderView: UIView) {
 
-        DispatchQueue.main.sync {
+        DispatchQueue.main.async {
             var count: Int = 0
             var xPos: CGFloat = 0.0
-            thumbnailViews.removeAll()
-            let width = Double(sliderView.frame.size.width) / (ceil(duration) + 1)
+            self.thumbnailViews.removeAll()
+            let width = Double(sliderView.frame.size.width) / (ceil(self.duration) + 1)
             for image in images {
                 let imageViews = UIImageView()
                 imageViews.image = image
-                imageViews.image = image.ResizeUIImage(width: CGFloat(width), height: heightY)
+                imageViews.image = image.ResizeUIImage(width: CGFloat(width), height: self.heightY)
                 imageViews.clipsToBounds = true
                 imageViews.frame = CGRect(x: xPos,
-                                          y: heightY,
+                                          y: self.heightY,
                                           width: CGFloat(width),
-                                          height: height)
-                thumbnailViews.append(imageViews)
-                sliderView.addSubview(thumbnailViews[count])
+                                          height: self.height)
+                self.thumbnailViews.append(imageViews)
+                sliderView.addSubview(self.thumbnailViews[count])
                 count += 1
                 xPos += CGFloat(width)
             }

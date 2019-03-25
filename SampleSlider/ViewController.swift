@@ -27,33 +27,18 @@ final class ViewController: UIViewController, UIImagePickerControllerDelegate & 
         imagePickerModel.mediaSegue(vc: self, bool: true)
     }
 
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(true)
-
-        if url != nil {
-            sliderView!.aVPlayerModel.video(url: url!)
-            setVideoModel.setURL(url: url!,sliderView: sliderView!, heightY: 100, height: 100)
-            sliderView?.vcs.frame = CGRect(x: 0, y: 100, width: view.frame.width, height: 100)
-            setLayer()
-        }
-    }
-
-    func setLayer() {
-        // Think Logic
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1){
-            self.sliderView?.addView()
-        }
-    }
-
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         // Local variable inserted by Swift 4.2 migrator.
         let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
 
         guard let mediaType = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.mediaType)] as? String,
             mediaType == (kUTTypeMovie as String),
-
+            
             let urls = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.mediaURL)] as? URL else { return }
-        url = urls
+        
+        sliderView!.aVPlayerModel.video(url: urls)
+        guard let views = sliderView else  { return }
+        setVideoModel.setURL(url: urls,sliderView: views, heightY: 100, height: 100)
         dismiss(animated: true)
     }
 

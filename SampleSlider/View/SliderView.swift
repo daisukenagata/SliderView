@@ -41,7 +41,8 @@ final class SliderView: UIView, UIGestureRecognizerDelegate {
         self.addGestureRecognizer(CommonStructure.swipePanGesture)
 
         self.frame = UIScreen.main.bounds
- 
+        // Example
+        vcs.frame = CGRect(x: 0, y: 100, width: self.frame.width, height: 100)
         // レイヤーのマスキング
         cALayerView.tori(views: lineDashView)
         
@@ -62,12 +63,11 @@ final class SliderView: UIView, UIGestureRecognizerDelegate {
         self.addSubview(view)
     }
 
-    func addView() {
-        self.addSubview(vcs)
-    }
-
     @objc func panTapped(sender: UIPanGestureRecognizer) {
         let position: CGPoint = sender.location(in: self)
+
+        if lineDashView.isHidden == true { self.addSubview(vcs) }
+
         //指が離れた際の座標を取得
         DispatchQueue.main.async {
             self.lineDashView.isHidden = false
