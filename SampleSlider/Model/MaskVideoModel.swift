@@ -78,7 +78,7 @@ public final class MaskVideoModel {
             for image in images {
                 let imageViews = UIImageView()
                 imageViews.image = image
-                
+                imageViews.image = image.ResizeUIImage(width: CGFloat(width), height: heightY)
                 imageViews.clipsToBounds = true
                 imageViews.frame = CGRect(x: xPos,
                                           y: heightY,
@@ -90,5 +90,18 @@ public final class MaskVideoModel {
                 xPos += CGFloat(width)
             }
         }
+    }
+}
+
+private extension UIImage {
+    func ResizeUIImage(width : CGFloat, height : CGFloat)-> UIImage! {
+        UIGraphicsBeginImageContextWithOptions(CGSize(width: width, height: height),true,0.0)
+
+        self.draw(in: CGRect(x: 0, y: 0, width: width, height: height))
+
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return newImage
     }
 }
