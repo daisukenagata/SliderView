@@ -44,7 +44,7 @@ final class AVPlayerModel {
             let uiImage = UIImage(cgImage: cgImage)
             return uiImage
         } catch { print("error") }
-        
+
         return UIImage()
     }
 }

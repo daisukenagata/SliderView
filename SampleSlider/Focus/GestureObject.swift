@@ -70,6 +70,5 @@ class GestureObject: UIView {
 
         views.frame.origin.y  = max(views.frame.origin.y, views.frame.minY)
         views.frame.origin.y  = min(views.frame.origin.y, views.frame.maxY - minSize.height)
-        
     }
 }

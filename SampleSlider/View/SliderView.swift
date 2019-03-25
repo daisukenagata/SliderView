@@ -43,12 +43,11 @@ final class SliderView: UIView, UIGestureRecognizerDelegate {
         self.frame = UIScreen.main.bounds
         // Example
         vcs.frame = CGRect(x: 0, y: 100, width: self.frame.width, height: 100)
-        // レイヤーのマスキング
-        cALayerView.tori(views: lineDashView)
-        
         vcs.layer.addSublayer(cALayerView.hollowTargetLayer)
         vcs.addSubview(lineDashView)
         lineDashView.isHidden = true
+
+        cALayerView.tori(views: lineDashView)
     }
 
     required init?(coder aDecoder: NSCoder) {
