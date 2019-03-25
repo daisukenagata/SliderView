@@ -27,7 +27,7 @@ final class ViewController: PickerViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-    
+
         if url != nil {
             sliderView!.aVPlayerModel.video(url: url!)
             guard let views = sliderView else  { return }
