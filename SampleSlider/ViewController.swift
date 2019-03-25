@@ -10,12 +10,10 @@ import UIKit
 import Photos
 import MobileCoreServices
 
-final class ViewController: UIViewController, UIImagePickerControllerDelegate & UINavigationControllerDelegate {
+final class ViewController: PickerViewController {
 
     var setVideoModel = MaskVideoModel()
     var sliderView: SliderView?
-    var url: URL?
-
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,28 +25,13 @@ final class ViewController: UIViewController, UIImagePickerControllerDelegate & 
         imagePickerModel.mediaSegue(vc: self, bool: true)
     }
 
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        // Local variable inserted by Swift 4.2 migrator.
-        let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
-
-        guard let mediaType = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.mediaType)] as? String,
-            mediaType == (kUTTypeMovie as String),
-            
-            let urls = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.mediaURL)] as? URL else { return }
-        
-        sliderView!.aVPlayerModel.video(url: urls)
-        guard let views = sliderView else  { return }
-        setVideoModel.setURL(url: urls,sliderView: views, heightY: 100, height: 100)
-        dismiss(animated: true)
-    }
-
-    // Helper function inserted by Swift 4.2 migrator.
-    private func convertFromUIImagePickerControllerInfoKeyDictionary(_ input: [UIImagePickerController.InfoKey: Any]) -> [String: Any] {
-        return Dictionary(uniqueKeysWithValues: input.map {key, value in (key.rawValue, value)})
-    }
-
-    // Helper function inserted by Swift 4.2 migrator.
-    private func convertFromUIImagePickerControllerInfoKey(_ input: UIImagePickerController.InfoKey) -> String {
-        return input.rawValue
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+    
+        if url != nil {
+            sliderView!.aVPlayerModel.video(url: url!)
+            guard let views = sliderView else  { return }
+            setVideoModel.setURL(url: url!,sliderView: views, heightY: 100, height: 100)
+        }
     }
 }

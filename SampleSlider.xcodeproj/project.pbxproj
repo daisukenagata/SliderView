@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BB0A9420224983B5000ABEEA /* PickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0A941F224983B5000ABEEA /* PickerViewController.swift */; };
 		BB0CE846223D8C4300A6A1B8 /* ImagePickerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0CE845223D8C4300A6A1B8 /* ImagePickerModel.swift */; };
 		BB5F44722226DB2500C77C54 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5F44712226DB2500C77C54 /* AppDelegate.swift */; };
 		BB5F44742226DB2500C77C54 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5F44732226DB2500C77C54 /* ViewController.swift */; };
@@ -23,6 +24,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BB0A941F224983B5000ABEEA /* PickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerViewController.swift; sourceTree = "<group>"; };
 		BB0CE845223D8C4300A6A1B8 /* ImagePickerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerModel.swift; sourceTree = "<group>"; };
 		BB5F446E2226DB2500C77C54 /* SampleSlider.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SampleSlider.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB5F44712226DB2500C77C54 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -51,23 +53,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BB0A941E22498387000ABEEA /* PickerViewController */ = {
+			isa = PBXGroup;
+			children = (
+				BB0A941F224983B5000ABEEA /* PickerViewController.swift */,
+				BB0CE845223D8C4300A6A1B8 /* ImagePickerModel.swift */,
+			);
+			path = PickerViewController;
+			sourceTree = "<group>";
+		};
 		BB0CE843223D86E000A6A1B8 /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				BBABDFE72235CB6C00959558 /* MaskVideoModel.swift */,
 				BBABDFE5223552E200959558 /* AVPlayerModel.swift */,
-				BB0CE845223D8C4300A6A1B8 /* ImagePickerModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
 		};
-		BB0CE844223D86EF00A6A1B8 /* View */ = {
+		BB0CE844223D86EF00A6A1B8 /* SliderView */ = {
 			isa = PBXGroup;
 			children = (
 				BB5F44852226E9E300C77C54 /* SliderView.swift */,
 				BB5F44832226E95A00C77C54 /* SliderView.xib */,
 			);
-			path = View;
+			path = SliderView;
 			sourceTree = "<group>";
 		};
 		BB5F44652226DB2500C77C54 = {
@@ -91,8 +101,9 @@
 			children = (
 				BB5F44712226DB2500C77C54 /* AppDelegate.swift */,
 				BB5F44732226DB2500C77C54 /* ViewController.swift */,
+				BB0A941E22498387000ABEEA /* PickerViewController */,
+				BB0CE844223D86EF00A6A1B8 /* SliderView */,
 				BB8F46242248146000F4D5A2 /* Focus */,
-				BB0CE844223D86EF00A6A1B8 /* View */,
 				BB0CE843223D86E000A6A1B8 /* Model */,
 				BB5F44752226DB2500C77C54 /* Main.storyboard */,
 				BB5F44782226DB2700C77C54 /* Assets.xcassets */,
@@ -184,6 +195,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BB0A9420224983B5000ABEEA /* PickerViewController.swift in Sources */,
 				BB8F462C2248155400F4D5A2 /* GestureObject.swift in Sources */,
 				BB8F462A2248155400F4D5A2 /* LineDashView.swift in Sources */,
 				BBABDFE82235CB6C00959558 /* MaskVideoModel.swift in Sources */,
