@@ -17,11 +17,7 @@ class PickerViewController: UIViewController, UIImagePickerControllerDelegate & 
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         // Local variable inserted by Swift 4.2 migrator.
         let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
-
-        guard let mediaType = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.mediaType)] as? String,
-            mediaType == (kUTTypeMovie as String),
-
-            let urls = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.mediaURL)] as? URL else { return }
+        guard let urls = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.mediaURL)] as? URL else { return }
         url = urls
         dismiss(animated: true)
     }
