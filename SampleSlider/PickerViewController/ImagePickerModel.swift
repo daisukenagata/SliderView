@@ -13,10 +13,10 @@ import MobileCoreServices
 final class ImagePickerModel: NSObject {
 
     func mediaSegue(vc: UIViewController,bool: Bool) {
-        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
+        if UIImagePickerController.isSourceTypeAvailable(.savedPhotosAlbum) {
             let pic = UIImagePickerController()
             if bool == true { pic.mediaTypes = [kUTTypeMovie as String] }
-            pic.allowsEditing = true
+            pic.allowsEditing = false
             pic.delegate = (vc as! UIImagePickerControllerDelegate & UINavigationControllerDelegate)
             vc.present(pic, animated: true)
         }
