@@ -38,6 +38,7 @@ final class SliderView: UIView, UIGestureRecognizerDelegate {
     // Example
     let vcs = UIView()
 
+
     override init(frame: CGRect) {
         super.init(frame: frame)
 
@@ -115,13 +116,13 @@ final class SliderView: UIView, UIGestureRecognizerDelegate {
             break
         }
     }
-    
+
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
         let position: CGPoint = touch.location(in: self)
         gestureObject.framePoint = position
         return true
     }
-    
+
     @objc func trimBt() {
         guard let urs = url, let startValue = startValue, let endValue = endValue else { return }
         let avAsset = AVAsset(url: urs)
@@ -130,7 +131,7 @@ final class SliderView: UIView, UIGestureRecognizerDelegate {
         let endTime = CMTime(seconds: Float64(timeSet), preferredTimescale: CMTimeScale(NSEC_PER_SEC))
         mutableComposition.aVAssetMerge(startAVAsset: avAsset, startDuration: startTime, endDuration: endTime)
     }
-    
+
     // Duration and origin
     @objc func onChange(change: UISlider) { ges(value: change.value) }
 

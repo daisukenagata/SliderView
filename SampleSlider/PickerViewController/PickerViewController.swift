@@ -31,5 +31,4 @@ class PickerViewController: UIViewController, UIImagePickerControllerDelegate & 
     private func convertFromUIImagePickerControllerInfoKey(_ input: UIImagePickerController.InfoKey) -> String {
         return input.rawValue
     }
-
 }
