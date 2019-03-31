@@ -84,7 +84,7 @@ final class SliderView: UIView, UIGestureRecognizerDelegate {
             //Gesture
             self.gestureObject.endPoint = self.lineDashView.frame.origin
             self.gestureObject.endFrame = self.lineDashView.frame
-            self.touchFlag = self.gestureObject.cropEdgeForPoint(point: self.gestureObject.framePoint, views: self.vcs)
+            self.touchFlag = self.gestureObject.cropEdgeForPoint(point: position, views: self.vcs)
             self.gestureObject.updatePoint(point: position, views: self.lineDashView, touchFlag: self.touchFlag)
             // Layer
             self.cALayerView.tori(views: self.lineDashView)
@@ -115,12 +115,6 @@ final class SliderView: UIView, UIGestureRecognizerDelegate {
         @unknown default:
             break
         }
-    }
-
-    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
-        let position: CGPoint = touch.location(in: self)
-        gestureObject.framePoint = position
-        return true
     }
 
     @objc func trimBt() {

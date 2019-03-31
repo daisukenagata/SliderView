@@ -12,7 +12,6 @@ enum TouchFlag { case touchSideLeft, touchSideRight }
 
 class GestureObject: UIView {
 
-    var framePoint = CGPoint()
     var endPoint = CGPoint()
     var endFrame = CGRect()
 

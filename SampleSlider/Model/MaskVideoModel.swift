@@ -45,6 +45,7 @@ public final class MaskVideoModel {
 
         for i in 0...Int(ceil(duration)) {
             DispatchQueue.main.sync {
+                print(i)
                 let thumbnail = thumbnailFromVideo(videoUrl: videoURL,
                                                    time: CMTimeMake(value: Int64(i), timescale: 1))
                 thumbnails.append(thumbnail)
@@ -75,7 +76,7 @@ public final class MaskVideoModel {
             var xPos: CGFloat = 0.0
             self.thumbnailViews.removeAll()
 
-            let width = Double(sliderView.frame.size.width) / (Double(self.duration) + 1)
+            let width = CGFloat(sliderView.frame.size.width) / CGFloat(self.duration) - CGFloat(0.5)
             for image in images {
                 let imageViews = UIImageView()
                 imageViews.image = image
