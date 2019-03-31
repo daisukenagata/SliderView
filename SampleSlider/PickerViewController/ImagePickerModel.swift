@@ -12,7 +12,10 @@ import MobileCoreServices
 
 final class ImagePickerModel: NSObject {
 
+    private var vcs: UIViewController?
+
     func mediaSegue(vc: UIViewController,bool: Bool) {
+        vcs = vc
         if UIImagePickerController.isSourceTypeAvailable(.savedPhotosAlbum) {
             let pic = UIImagePickerController()
             if bool == true { pic.mediaTypes = [kUTTypeMovie as String] }

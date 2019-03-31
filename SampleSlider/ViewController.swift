@@ -29,6 +29,8 @@ final class ViewController: PickerViewController {
         super.viewDidAppear(true)
 
         if url != nil {
+            sliderView?.vc = self
+            sliderView!.url = url
             sliderView!.aVPlayerModel.video(url: url!)
             guard let views = sliderView else  { return }
             setVideoModel.setURL(url: url!,sliderView: views, heightY: 100, height: 100)

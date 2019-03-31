@@ -15,7 +15,6 @@ final class AVPlayerModel {
     var videoPlayer: AVPlayer!
     var playerItem: AVPlayerItem?
 
-
     func currentTime() -> Float64 { return CMTimeGetSeconds((videoPlayer.currentItem?.currentTime())!) }
 
     func videoDurationTime() -> Float64 { return CMTimeGetSeconds((videoPlayer.currentItem?.duration)!) }
@@ -30,7 +29,7 @@ final class AVPlayerModel {
     }
 
     func videoImageViews(nowTime: Float64) -> UIImage {
-        let interval = CMTime(seconds: nowTime, preferredTimescale: CMTimeScale(NSEC_PER_SEC))
+        let interval = CMTime(seconds: nowTime, preferredTimescale: CMTimeScale(Int32(NSEC_PER_SEC)))
         guard  let url = urls else { return UIImage() }
         return  thumbnailFromVideo(videoUrl: url, time: interval)
     }

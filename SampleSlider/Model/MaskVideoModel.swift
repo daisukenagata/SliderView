@@ -17,7 +17,6 @@ public final class MaskVideoModel {
     private var thumbnailViews = [UIImageView]()
     private var videoURL  = URL(fileURLWithPath: "")
 
-
     func setURL(url: URL,sliderView: UIView ,heightY: CGFloat ,height: CGFloat ) {
         self.videoURL = url
         self.height = height
@@ -74,7 +73,8 @@ public final class MaskVideoModel {
             var count: Int = 0
             var xPos: CGFloat = 0.0
             self.thumbnailViews.removeAll()
-            let width = Double(sliderView.frame.size.width) / (ceil(self.duration) + 1)
+
+            let width = Double(sliderView.frame.size.width) / (Double(self.duration) + 0.5)
             for image in images {
                 let imageViews = UIImageView()
                 imageViews.image = image

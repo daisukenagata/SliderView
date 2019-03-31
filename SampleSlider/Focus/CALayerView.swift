@@ -15,7 +15,7 @@ class CALayerLogic {
     let hollowTargetLayer = CALayer()
 
     func tori(views: UIView){
-        views.layer.borderWidth = 1
+        views.layer.borderWidth = 2
         views.layer.borderColor = UIColor.red.cgColor
         hollowTargetLayer.bounds = UIScreen.main.bounds
         hollowTargetLayer.frame.size.height = views.frame.height

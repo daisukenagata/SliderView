@@ -21,6 +21,7 @@
 		BB8F462C2248155400F4D5A2 /* GestureObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8F46282248155400F4D5A2 /* GestureObject.swift */; };
 		BBABDFE6223552E200959558 /* AVPlayerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBABDFE5223552E200959558 /* AVPlayerModel.swift */; };
 		BBABDFE82235CB6C00959558 /* MaskVideoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBABDFE72235CB6C00959558 /* MaskVideoModel.swift */; };
+		BBED591B224FE366004E3FB1 /* MutableComposition.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBED591A224FE366004E3FB1 /* MutableComposition.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		BB8F46282248155400F4D5A2 /* GestureObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GestureObject.swift; sourceTree = "<group>"; };
 		BBABDFE5223552E200959558 /* AVPlayerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVPlayerModel.swift; sourceTree = "<group>"; };
 		BBABDFE72235CB6C00959558 /* MaskVideoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaskVideoModel.swift; sourceTree = "<group>"; };
+		BBED591A224FE366004E3FB1 /* MutableComposition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MutableComposition.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +69,7 @@
 			children = (
 				BBABDFE72235CB6C00959558 /* MaskVideoModel.swift */,
 				BBABDFE5223552E200959558 /* AVPlayerModel.swift */,
+				BBED591A224FE366004E3FB1 /* MutableComposition.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -204,6 +207,7 @@
 				BB8F46292248155400F4D5A2 /* CALayerView.swift in Sources */,
 				BB5F44862226E9E300C77C54 /* SliderView.swift in Sources */,
 				BB0CE846223D8C4300A6A1B8 /* ImagePickerModel.swift in Sources */,
+				BBED591B224FE366004E3FB1 /* MutableComposition.swift in Sources */,
 				BB5F44722226DB2500C77C54 /* AppDelegate.swift in Sources */,
 				BBABDFE6223552E200959558 /* AVPlayerModel.swift in Sources */,
 			);
