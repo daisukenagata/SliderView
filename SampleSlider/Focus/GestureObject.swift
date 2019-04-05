@@ -19,16 +19,16 @@ class GestureObject: UIView {
     func cropEdgeForPoint(point: CGPoint, views: UIView) -> TouchFlag {
         //タップした領域を取得
         let frame = views.frame
-        frame.insetBy(dx: -CGFloat(32), dy: -CGFloat(32))
+        frame.insetBy(dx: -CGFloat(64), dy: -CGFloat(64))
         
         var leftRect = frame
-        leftRect.size.width = CGFloat(64)
+        leftRect.size.width = CGFloat(128)
         if leftRect.contains(point) {
             return TouchFlag.touchSideLeft
         }
 
         var rightRect = leftRect
-        rightRect.origin.x = frame.maxX - CGFloat(64)
+        rightRect.origin.x = frame.maxX - CGFloat(128)
         if rightRect.contains(point) {
             return TouchFlag.touchSideRight
         }
