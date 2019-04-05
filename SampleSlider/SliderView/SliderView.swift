@@ -141,8 +141,6 @@ final class SliderView: UIView, UIGestureRecognizerDelegate {
         slider.minimumValue = 0
         slider.maximumValue = Float(currentTime)
 
-        aVPlayerModel.videoSeek(change: value)
-
         let nowTime = aVPlayerModel.currentTime()
         timeLabel.text = nowTime.description
 
