@@ -18,6 +18,7 @@ public final class MaskVideoModel {
     private var thumbnailViews = [UIImageView]()
     private var videoURL  = URL(fileURLWithPath: "")
 
+
     func setURL(url: URL,sliderView: UIView ,heightY: CGFloat ,height: CGFloat ) {
         self.videoURL = url
         self.height = height
