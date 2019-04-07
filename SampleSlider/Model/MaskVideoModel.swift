@@ -18,7 +18,16 @@ public final class MaskVideoModel {
     private var thumbnailViews = [UIImageView]()
     private var videoURL  = URL(fileURLWithPath: "")
 
-    func framesNumber() -> Double {
+    func setURL(url: URL,sliderView: UIView ,heightY: CGFloat ,height: CGFloat ) {
+        self.videoURL = url
+        self.height = height
+        self.heightY = heightY
+        self.duration = videoDuration(videoURL: url)
+        self.updateThumbnails(sliderView: sliderView)
+        numberOfFrames = framesNumber()
+    }
+
+    private func framesNumber() -> Double {
         enum CaseNumber: Double {
             case zero, one, two, three, four
         }
@@ -33,15 +42,6 @@ public final class MaskVideoModel {
             break
         }
         return CaseNumber.one.rawValue
-    }
-
-    func setURL(url: URL,sliderView: UIView ,heightY: CGFloat ,height: CGFloat ) {
-        self.videoURL = url
-        self.height = height
-        self.heightY = heightY
-        self.duration = videoDuration(videoURL: url)
-        self.updateThumbnails(sliderView: sliderView)
-        numberOfFrames = framesNumber()
     }
 
     private func videoDuration(videoURL: URL) -> Float64 {
