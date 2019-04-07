@@ -71,12 +71,10 @@ public final class MaskVideoModel {
     private func addImagesToView(images: [UIImage], sliderView: UIView) {
 
         DispatchQueue.main.async {
-            var count: Int = 0
             var xPos: CGFloat = 0.0
             self.thumbnailViews.removeAll()
 
-            // TODO SEEK Duration
-            let width = CGFloat(sliderView.frame.size.width) / CGFloat(self.duration)
+            let width = CGFloat(sliderView.frame.size.width) / CGFloat(Int(ceil(self.duration)))
             for image in images {
                 let imageViews = UIImageView()
                 imageViews.image = image
@@ -87,7 +85,6 @@ public final class MaskVideoModel {
                                           width: CGFloat(width),
                                           height: self.height)
                 sliderView.addSubview(imageViews)
-                count += 1
                 xPos += CGFloat(width)
             }
         }
