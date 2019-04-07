@@ -19,17 +19,20 @@ public final class MaskVideoModel {
     private var videoURL  = URL(fileURLWithPath: "")
 
     func framesNumber() -> Double {
+        enum CaseNumber: Double {
+            case zero, one, two, three, four
+        }
         switch duration {
         case 0..<5:
-            return 4
-        case 0..<10:
-            return 3
-        case 0..<15:
-            return 2
+            return CaseNumber.four.rawValue
+        case 5..<10:
+            return CaseNumber.three.rawValue
+        case 10..<15:
+            return CaseNumber.two.rawValue
         default:
             break
         }
-        return 1.0
+        return CaseNumber.one.rawValue
     }
 
     func setURL(url: URL,sliderView: UIView ,heightY: CGFloat ,height: CGFloat ) {
