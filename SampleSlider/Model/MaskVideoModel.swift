@@ -13,8 +13,8 @@ public final class MaskVideoModel {
 
     private var height = CGFloat()
     private var heightY = CGFloat()
-    private var duration: Float64 = 0.0
     private var numberOfFrames = 1.0
+    private var duration: Float64 = 0.0
     private var thumbnailViews = [UIImageView]()
     private var videoURL  = URL(fileURLWithPath: "")
 
