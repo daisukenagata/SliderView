@@ -14,9 +14,23 @@ public final class MaskVideoModel {
     private var height = CGFloat()
     private var heightY = CGFloat()
     private var duration: Float64 = 0.0
+    private var numberOfFrames = 1.0
     private var thumbnailViews = [UIImageView]()
     private var videoURL  = URL(fileURLWithPath: "")
 
+    func framesNumber() -> Double {
+        switch duration {
+        case 0..<5:
+            return 4
+        case 0..<10:
+            return 3
+        case 0..<15:
+            return 2
+        default:
+            break
+        }
+        return 1.0
+    }
 
     func setURL(url: URL,sliderView: UIView ,heightY: CGFloat ,height: CGFloat ) {
         self.videoURL = url
@@ -24,6 +38,7 @@ public final class MaskVideoModel {
         self.heightY = heightY
         self.duration = videoDuration(videoURL: url)
         self.updateThumbnails(sliderView: sliderView)
+        numberOfFrames = framesNumber()
     }
 
     private func videoDuration(videoURL: URL) -> Float64 {
@@ -43,10 +58,10 @@ public final class MaskVideoModel {
             DispatchQueue.main.sync { view.removeFromSuperview() }
         }
 
-        for i in 0..<Int(ceil(duration)) {
+        for i in 0..<Int(ceil(duration)*numberOfFrames) {
             DispatchQueue.main.sync {
                 let thumbnail = thumbnailFromVideo(videoUrl: videoURL,
-                                                   time: CMTimeMake(value: Int64(i), timescale: 1))
+                                                   time: CMTimeMake(value: Int64(i), timescale: Int32(numberOfFrames)))
                 thumbnails.append(thumbnail)
             }
         }
@@ -74,7 +89,7 @@ public final class MaskVideoModel {
             var xPos: CGFloat = 0.0
             self.thumbnailViews.removeAll()
 
-            let width = CGFloat(sliderView.frame.size.width) / CGFloat(Int(ceil(self.duration)))
+            let width = CGFloat(sliderView.frame.size.width) / CGFloat(Int(ceil(self.duration*self.numberOfFrames)))
             for image in images {
                 let imageViews = UIImageView()
                 imageViews.image = image

@@ -8,11 +8,34 @@
 
 import UIKit
 
-class CALayerLogic {
+class CALayerView: UIView {
 
+    var sideWhide: CGFloat = 0.0
+    var topDownWhide: CGFloat = 0.0
     var path =  UIBezierPath()
     let maskLayer = CAShapeLayer()
     let hollowTargetLayer = CALayer()
+  
+    private let girdRightOutView = UIView()
+    private let girdRightInView = UIView()
+    private let girdLeftOutView = UIView()
+    private let girdLeftInView = UIView()
+    private let girdTopOutView = UIView()
+    private let girdBottomOutView = UIView()
+
+    override init(frame: CGRect) {
+        super.init(frame: .zero)
+        self.addSubview(girdRightOutView)
+        self.addSubview(girdRightInView)
+        self.addSubview(girdLeftOutView)
+        self.addSubview(girdLeftInView)
+        self.addSubview(girdTopOutView)
+        self.addSubview(girdBottomOutView)
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
 
     func tori(views: UIView){
         views.layer.borderWidth = 1
@@ -41,5 +64,26 @@ class CALayerLogic {
 
         maskLayer.fillRule = CAShapeLayerFillRule.evenOdd
         hollowTargetLayer.mask = maskLayer
+        // TODO
+        sideWhide = 12
+        topDownWhide = 4
+
+        girdRightInView.backgroundColor = UIColor.red
+        girdRightInView.frame = CGRect(x: views.frame.origin.x - sideWhide/2, y: views.frame.origin.y, width: sideWhide, height: views.frame.height)
+
+        girdRightOutView.backgroundColor = UIColor.red
+        girdRightOutView.frame = CGRect(x: views.frame.origin.x + sideWhide/2, y: views.frame.origin.y, width: sideWhide, height: views.frame.height)
+
+        girdLeftInView.backgroundColor = UIColor.red
+        girdLeftInView.frame = CGRect(x: views.frame.width + views.frame.origin.x - sideWhide/2, y: views.frame.origin.y, width: sideWhide, height: views.frame.height)
+
+        girdLeftOutView.backgroundColor = UIColor.red
+        girdLeftOutView.frame = CGRect(x: views.frame.width + views.frame.origin.x + sideWhide/2, y: views.frame.origin.y, width: sideWhide, height: views.frame.height)
+
+        girdTopOutView.backgroundColor = UIColor.red
+        girdTopOutView.frame = CGRect(x: views.frame.origin.x - sideWhide/2, y: views.frame.origin.y - topDownWhide/2, width: views.frame.width + sideWhide*2, height: topDownWhide)
+
+        girdBottomOutView.backgroundColor = UIColor.red
+        girdBottomOutView.frame = CGRect(x: views.frame.origin.x - sideWhide/2, y: views.frame.height, width: views.frame.width + sideWhide*2, height: topDownWhide)
     }
 }

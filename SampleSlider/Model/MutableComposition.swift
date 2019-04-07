@@ -118,7 +118,7 @@ class MutableComposition: NSObject {
         } else {
             let scaleFactor = CGAffineTransform(scaleX: scaleToFitRatio, y: scaleToFitRatio)
             var concat = assetTrack.preferredTransform.concatenating(scaleFactor)
-                .concatenating(CGAffineTransform(translationX: 0, y: UIScreen.main.bounds.width / 2))
+                .concatenating(CGAffineTransform(translationX: 0, y: 0))
             if assetInfo.orientation == .down {
                 let fixUpsideDown = CGAffineTransform(rotationAngle: CGFloat(Double.pi))
                 let windowBounds = UIScreen.main.bounds

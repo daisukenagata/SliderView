@@ -29,7 +29,7 @@ final class SliderView: UIView, UIGestureRecognizerDelegate {
 
     var url: URL?
     var vc: ViewController?
-    var cALayerView = CALayerLogic()
+    var cALayerView = CALayerView()
     var lineDashView = LineDashView()
     var gestureObject = GestureObject()
     var aVPlayerModel = AVPlayerModel()
@@ -53,6 +53,7 @@ final class SliderView: UIView, UIGestureRecognizerDelegate {
         // Example
         vcs.frame = CGRect(x: 0, y: 100, width: self.frame.width, height: 100)
         vcs.layer.addSublayer(cALayerView.hollowTargetLayer)
+        vcs.addSubview(cALayerView)
         vcs.addSubview(lineDashView)
 
         lineDashView.isHidden = true
